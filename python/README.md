@@ -51,3 +51,7 @@
   - Settings: 'wrap'
     - 'Editor: Word Wrap': 'wordWrapColumn'
     - 'Editor: Word Wrap Column': '88'
+
+## Miscellaneous Notes
+
+- See https://docs.python-guide.org/writing/structure/#sample-repository for a recommended repository structure
