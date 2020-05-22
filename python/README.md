@@ -12,6 +12,8 @@
 - Activate the virtual environment, `venv`
   - `source venv/bin/activate`
 - All Python packages installed from this point onwards will be available in this virtual environment only
+- Install wheel (reference implementation of the Python wheel packaging standard)
+  - `pip install wheel`
 - Install pylint code analysis (checker)
   - `pip install pylint`
 - Install Black code formatter
