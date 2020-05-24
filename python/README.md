@@ -3,6 +3,7 @@
 - Create a GitHub repository
   - for simplicity, the repository name will be the project directory name
   - you may use the the `gitignore` file here as your initial `.gitignore` file in the repository
+  - you may also generate your `.gitignore` file from <https://gitignore.io/>
 - Clone GitHub repository to the project's parent directory
 - Confirm Python 3 has already been installed
   - `python3 --version`
@@ -16,10 +17,14 @@
   - `pip install wheel`
 - Install pylint code analysis (checker)
   - `pip install pylint`
+- Install mypy static type checker
+  - `pip install mypy`
 - Install Black code formatter
   - `pip install black`
 - Install pytest for unit testing
   - `pip install pytest`
+- Install mypy plugin for pytest
+  - `pip install pytest-mypy`
 - Install Coverage.py for code coverage
   - `pip install coverage`
 
@@ -28,29 +33,36 @@
 - Launch VS Code
 - Install the Python extension (by Microsoft), if not already installed
 - Open the project folder (directory)
-- Select the 'Python 3.x.x ('venv': venv)' interpreter
-  - Command Palette: 'python interpreter'
-- Select pylint as the linter to use
-  - Command Palette: 'linter'
+- Select the `Python 3.x.x ('venv': venv)` interpreter
+  - Command Palette: `python interpreter`
+- Enable linting
+  - Settings: `linting enabled`
+    - 'Python > Linting: Enabled': check
+- Enable pylint
+  - Settings: `pylint enabled`
+    - 'Python > Linting: Pylint Enabled': check 
 - Enable all pylint checkers
   - by default VS Code disables all Refactor, Convention, and most Warning messages
-  - Settings: 'pylintUseMinimalCheckers'
+  - Settings: `pylintUseMinimalCheckers`
     - 'Pylint Use Minimal Checkers': uncheck
+- Enable mypy
+  - Settings: `mypy enabled`
+    - 'Python > Linting: Mypy Enabled': check
 - Enable Black as the code formatter
-  - Settings: 'python formatting provider'
+  - Settings: `python formatting provider`
     - 'Python > Formatting: Provider': 'black'
 - Enable Black to format code on save
-  - Settings: 'format on save'
+  - Settings: `format on save`
 - Set editor ruler and wrapping
   - the Black formatter defines an 88-character line length
-  - Settings: 'ruler'
+  - Settings: `ruler`
   - under 'Editor: Rulers', click 'Edit in settings.json'
     - this opens the `settings.json` file
   - add the following right before the close curly brace (`}`) at the bottom of the file
     - `"editor.rulers": [88]`
   - ensure the line above it ends with a comma (`,`), e.g.,
     - `"editor.fontFamily": "..., 'Droid Sans Fallback'",`
-  - Settings: 'wrap'
+  - Settings: `wrap`
     - 'Editor: Word Wrap': 'wordWrapColumn'
     - 'Editor: Word Wrap Column': '88'
 
