@@ -19,6 +19,8 @@
   - `pip install pylint`
 - Install mypy static type checker
   - `pip install mypy`
+- Install pydocstyle static analysis for Python docstrings
+  - `pip install pydocstyle`
 - Install Black code formatter
   - `pip install black`
 - Install pytest for unit testing
@@ -40,7 +42,7 @@
     - 'Python > Linting: Enabled': check
 - Enable pylint
   - Settings: `pylint enabled`
-    - 'Python > Linting: Pylint Enabled': check 
+    - 'Python > Linting: Pylint Enabled': check
 - Enable all pylint checkers
   - by default VS Code disables all Refactor, Convention, and most Warning messages
   - Settings: `pylintUseMinimalCheckers`
@@ -48,6 +50,9 @@
 - Enable mypy
   - Settings: `mypy enabled`
     - 'Python > Linting: Mypy Enabled': check
+- Enable pydocstyle
+  - Settings: `pydocstyle`
+    - 'Python › Linting: Pydocstyle Enabled': check
 - Enable Black as the code formatter
   - Settings: `python formatting provider`
     - 'Python > Formatting: Provider': 'black'
