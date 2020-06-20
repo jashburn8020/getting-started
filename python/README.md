@@ -74,6 +74,9 @@
 ## Miscellaneous Notes
 
 - See https://docs.python-guide.org/writing/structure/#sample-repository for a recommended repository structure
+- VS Code configuration (including extensions) are located in the following directories
+  - `~/.vscode`
+  - `~/.config/Code`
 
 ## Troubleshooting
 
