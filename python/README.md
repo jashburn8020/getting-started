@@ -74,3 +74,18 @@
 ## Miscellaneous Notes
 
 - See https://docs.python-guide.org/writing/structure/#sample-repository for a recommended repository structure
+
+## Troubleshooting
+
+Linting with pylint disabled
+
+- Symptoms
+  - pylint messages do not appear under the PROBLEMS tab
+  - pylint messages are displayed when pylint is executed via command line
+  - turning on Python linting via Command Palette has no effect - reverts to 'off'
+  - selecting pylint as the linter via the Command Palette has no effect - reverts to 'Disable Linting' (if no other linters are enabled)
+- Fix
+  - `settings.json` in both `~/.config/Code/User` and `<project_dir>/.vscode`, remove the following:
+    - `"python.jediEnabled": false`
+    - `"python.languageServer": "Microsoft"`
+  - do _not_ re-enable the Microsoft language server when prompted
