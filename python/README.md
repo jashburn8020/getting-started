@@ -80,15 +80,28 @@
 
 ## Troubleshooting
 
-Linting with pylint disabled
+**Linting with pylint disabled**
 
 - Symptoms
   - pylint messages do not appear under the PROBLEMS tab
   - pylint messages are displayed when pylint is executed via command line
   - turning on Python linting via Command Palette has no effect - reverts to 'off'
   - selecting pylint as the linter via the Command Palette has no effect - reverts to 'Disable Linting' (if no other linters are enabled)
-- Fix
+- Fix (workaround)
   - `settings.json` in both `~/.config/Code/User` and `<project_dir>/.vscode`, remove the following:
     - `"python.jediEnabled": false`
     - `"python.languageServer": "Microsoft"`
   - do _not_ re-enable the Microsoft language server when prompted
+
+**Code Lens with pytest causes code to jump about**
+
+- Symptoms
+  - with Code Lens enabled and test discovery done, editing test code causes the 'Run Test' and 'Debug Test' Code Lens to appear and disappear
+  - Code Lens appears when code is syntactically correct, and disappears when not
+- Fix (workaround)
+  - Settings:
+    - 'Editor: Code Lens': uncheck
+    - you may leave 'Python › Testing: Auto Test Discover On Save Enabled' checked
+  - run tests via 'Tests' on the Activity Bar, or via command line terminal
+  
+    
