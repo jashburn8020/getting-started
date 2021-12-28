@@ -1,5 +1,7 @@
 # Getting Started with Python with VS Code
 
+## General
+
 - Create a GitHub repository
   - for simplicity, the repository name will be the project directory name
   - you may use the the `gitignore` file here as your initial `.gitignore` file in the repository
@@ -8,6 +10,9 @@
 - Confirm Python 3 has already been installed
   - `python3 --version`
 - Go to the project directory
+
+### Plain Pip
+
 - Create a virtual environment in the project directory
   - `python3 -m venv venv`
 - Activate the virtual environment, `venv`
@@ -15,20 +20,47 @@
 - All Python packages installed from this point onwards will be available in this virtual environment only
 - Install wheel (reference implementation of the Python wheel packaging standard)
   - `pip install wheel`
-- Install pylint code analysis (checker)
+- Install pylint code analyser
   - `pip install pylint`
+- Install flake8 code analyser
+  - `pip install flake8`
 - Install mypy static type checker
   - `pip install mypy`
-- Install pydocstyle static analysis for Python docstrings
+- Install pydocstyle static analyser for Python docstrings
   - `pip install pydocstyle`
 - Install Black code formatter
   - `pip install black`
 - Install pytest for unit testing
   - `pip install pytest`
-- Install mypy plugin for pytest
-  - `pip install pytest-mypy`
 - Install Coverage.py for code coverage
   - `pip install coverage`
+- Notes on requirements file
+  - generating a `requirements.txt` file listing the installed dependencies
+    - `pip freeze > requirements.txt`
+  - separating deployment requirements from development requirements
+    - create `requirements.txt` excluding all development packages
+    - create `requirements_dev.txt` containing only development packages (such as those above)
+      - add the line `-r requirements.txt` to the top of this file
+  - creating a locked down version of production requirements
+    - change all version specifiers to `==`
+  - installing packages from requirements file
+    - `pip install -r <requirements_file>`
+
+### Pipenv
+
+- Install Pipx
+  - `python3 -m pip install --user pipx`
+- Ensure directories necessary for Pipx operation are in your PATH environment variable
+  - `python3 -m pipx ensurepath`
+- Install Pipenv
+  - `pipx install pipenv`
+- Create an empty `.venv` directory under the project directory
+  - this is to install packages into the project directory rather than in `~/.local/share/virtualenvs`
+- Install development packages
+  - `pipenv install pylint flake8 mypy pydocstyle black pytest coverage --dev`
+- Activate the virtual environment
+  - `pipenv shell`
+- See also [README-pipenv.md](README-pipenv.md)
 
 ## Visual Studio Code (VS Code)
 
@@ -73,7 +105,7 @@
 
 ## Miscellaneous Notes
 
-- See https://docs.python-guide.org/writing/structure/#sample-repository for a recommended repository structure
+- See <https://docs.python-guide.org/writing/structure/#sample-repository> for a recommended repository structure
 - VS Code configuration (including extensions) are located in the following directories
   - `~/.vscode`
   - `~/.config/Code`
@@ -103,5 +135,3 @@
     - 'Editor: Code Lens': uncheck
     - you may leave 'Python › Testing: Auto Test Discover On Save Enabled' checked
   - run tests via 'Tests' on the Activity Bar, or via command line terminal
-  
-    
