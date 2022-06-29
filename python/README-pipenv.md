@@ -27,6 +27,7 @@
     - `pipenv install pytest --dev`
   - if a Pipfile already exists
     - `pipenv install`
+    - `pipenv install --dev` (install all dependencies, including dev)
   - note: running `pipenv install` in a subdirectory will install the package into the same `virtualenvs` location, but running it in a _sibling_ directory will install the package into a new location
 - To install packages into the project directory rather than in `~/.local/share/virtualenvs`
   - create an empty `.venv` directory under the project directory before installing packages
@@ -71,6 +72,8 @@
   - `Pipfile.lock`
     - defines a specific idempotent environment that is known to work for your project
     - your source of truth
+- List installed dependencies
+  - `pipenv graph`
 - Pipenv upgrade workflow
   - find out what's changed upstream
     - `pipenv update --outdated`
