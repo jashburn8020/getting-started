@@ -2,103 +2,96 @@
 
 ## General
 
-- Create a GitHub repository
-  - for simplicity, the repository name will be the project directory name
-  - you may use the the `gitignore` file here as your initial `.gitignore` file in the repository
-  - you may also generate your `.gitignore` file from <https://gitignore.io/>
-- Clone GitHub repository to the project's parent directory
-- Confirm Python 3 has already been installed
+- Create a GitHub repository.
+  - For simplicity, the repository name will be the project directory name.
+  - You may use the the `gitignore` file here as your initial `.gitignore` file in the repository.
+  - You may also generate your `.gitignore` file from <https://gitignore.io/>.
+- Clone GitHub repository to the project's parent directory.
+- Confirm Python 3 has already been installed:
   - `python3 --version`
-- Go to the project directory
+- Go to the project directory.
 
 ### Plain Pip
 
-- Create a virtual environment in the project directory
+- Create a virtual environment in the project directory:
   - `python3 -m venv venv`
-- Activate the virtual environment, `venv`
+- Activate the virtual environment, `venv`:
   - `source venv/bin/activate`
-- All Python packages installed from this point onwards will be available in this virtual environment only
-- Install wheel (reference implementation of the Python wheel packaging standard)
-  - `pip install wheel`
-- Install pylint code analyser
+- All Python packages installed from this point onwards will be available in this virtual environment only.
+- Install Pylint code analyser:
   - `pip install pylint`
-- Install flake8 code analyser
-  - `pip install flake8`
-- Install mypy static type checker
+- Install Ruff code linter and formatter:
+  - `pip install ruff`
+- Install Mypy static type checker:
   - `pip install mypy`
-- Install pydocstyle static analyser for Python docstrings
-  - `pip install pydocstyle`
-- Install Black code formatter
-  - `pip install black`
-- Install pytest for unit testing
+- Install Pytest for unit testing:
   - `pip install pytest`
-- Install Coverage.py for code coverage
+- Install Coverage.py for code coverage:
   - `pip install coverage`
-- Notes on requirements file
-  - generating a `requirements.txt` file listing the installed dependencies
-    - `pip freeze > requirements.txt`
-  - separating deployment requirements from development requirements
-    - create `requirements.txt` excluding all development packages
-    - create `requirements_dev.txt` containing only development packages (such as those above)
-      - add the line `-r requirements.txt` to the top of this file
-  - creating a locked down version of production requirements
-    - change all version specifiers to `==`
-  - installing packages from requirements file
-    - `pip install -r <requirements_file>`
+
+#### Requirements file
+
+- To generate a `requirements.txt` file listing the installed dependencies:
+  - `pip freeze > requirements.txt`
+- To separate deployment requirements from development requirements:
+  - Create `requirements.txt` excluding all development packages.
+  - Create `requirements_dev.txt` containing only development packages (such as those above).
+    - Add the line `-r requirements.txt` to the top of this file.
+- To create a locked down version of production requirements:
+  - Change all version specifiers to `==`.
+- To install packages from requirements file:
+  - `pip install -r <requirements_file>`
 
 ### Pipenv
 
-- Install Pipx
+- Install Pipx:
   - `python3 -m pip install --user pipx`
-- Ensure directories necessary for Pipx operation are in your PATH environment variable
+- Ensure directories necessary for Pipx operation are in your PATH environment variable:
   - `python3 -m pipx ensurepath`
-- Install Pipenv
+- Install Pipenv:
   - `pipx install pipenv`
-- Create an empty `.venv` directory under the project directory
-  - this is to install packages into the project directory rather than in `~/.local/share/virtualenvs`
-- Install development packages
-  - `pipenv install pylint flake8 mypy pydocstyle black pytest coverage --dev`
-- Activate the virtual environment
+- Create an empty `.venv` directory under the project directory.
+  - This is to install packages into the project directory rather than in `~/.local/share/virtualenvs`.
+- Install development packages:
+  - `pipenv install pylint ruff mypy pytest coverage --dev`
+- Activate the virtual environment:
   - `pipenv shell`
-- See also [README-pipenv.md](README-pipenv.md)
+- See also [README-pipenv.md](README-pipenv.md).
 
 ## Visual Studio Code (VS Code)
 
-- Launch VS Code
-- Install the Python extension (by Microsoft), if not already installed
-- Open the project folder (directory)
-- Select the `Python 3.x.x ('venv': venv)` interpreter
+- Launch VS Code.
+- Install extensions:
+  - Python (by Microsoft, if not already installed)
+  - Pylint
+  - Ruff
+  - Mypy (it seems Matan Gover's extension works better than Microsoft's)
+- Open the project folder (directory).
+- Select the `Python 3.x.x ('venv': venv)` interpreter:
   - Command Palette: `python interpreter`
-- Enable linting
-  - Settings: `linting enabled`
-    - 'Python > Linting: Enabled': check
-- Enable pylint
-  - Settings: `pylint enabled`
-    - 'Python > Linting: Pylint Enabled': check
-- Enable all pylint checkers
-  - by default VS Code disables all Refactor, Convention, and most Warning messages
-  - Settings: `pylintUseMinimalCheckers`
-    - 'Pylint Use Minimal Checkers': uncheck
-- Enable mypy
-  - Settings: `mypy enabled`
-    - 'Python > Linting: Mypy Enabled': check
-- Enable pydocstyle
-  - Settings: `pydocstyle`
-    - 'Python › Linting: Pydocstyle Enabled': check
-- Enable Black as the code formatter
-  - Settings: `python formatting provider`
-    - 'Python > Formatting: Provider': 'black'
-- Enable Black to format code on save
-  - Settings: `format on save`
-- Set editor ruler and wrapping
-  - the Black formatter defines an 88-character line length
+- Enable linters:
+  - Linters, if installed, are enabled by default.
+  - Disable a linter by disabling the extension, which can be done per workspace.
+  - See also: <https://code.visualstudio.com/docs/python/linting>
+- Enable all rules for Ruff:
+  - Settings: `ruff select`
+    - 'Ruff > Lint: Select': ALL
+- Enable type checking:
+  - Settings: `mypy`
+    - 'Mypy: Enabled': check
+    - 'Mypy: Run Using Active Interpreter': check
+  - Settings: `python type checking`
+    - 'Python > Analysis: Type Checking Mode': strict
+- Enable Pytest:
+  - Settings: `pytest`
+    - 'Python > Testing: Pytest Enabled': check
+- Set editor ruler and wrapping:
+  - The Ruff/Black formatter defines an 88-character line length.
   - Settings: `ruler`
-  - under 'Editor: Rulers', click 'Edit in settings.json'
-    - this opens the `settings.json` file
-  - add the following right before the close curly brace (`}`) at the bottom of the file
-    - `"editor.rulers": [88]`
-  - ensure the line above it ends with a comma (`,`), e.g.,
-    - `"editor.fontFamily": "..., 'Droid Sans Fallback'",`
+    - 'Editor: Rulers', click 'Edit in settings.json'
+      - This opens the `settings.json` file.
+    - Add the following:
+      - `"editor.rulers": [88]`
   - Settings: `wrap`
     - 'Editor: Word Wrap': 'wordWrapColumn'
     - 'Editor: Word Wrap Column': '88'
@@ -111,19 +104,6 @@
   - `~/.config/Code`
 
 ## Troubleshooting
-
-**Linting with pylint disabled**
-
-- Symptoms
-  - pylint messages do not appear under the PROBLEMS tab
-  - pylint messages are displayed when pylint is executed via command line
-  - turning on Python linting via Command Palette has no effect - reverts to 'off'
-  - selecting pylint as the linter via the Command Palette has no effect - reverts to 'Disable Linting' (if no other linters are enabled)
-- Fix (workaround)
-  - `settings.json` in both `~/.config/Code/User` and `<project_dir>/.vscode`, remove the following:
-    - `"python.jediEnabled": false`
-    - `"python.languageServer": "Microsoft"`
-  - do _not_ re-enable the Microsoft language server when prompted
 
 **Code Lens with pytest causes code to jump about**
 
