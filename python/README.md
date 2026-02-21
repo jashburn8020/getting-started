@@ -66,7 +66,9 @@
   - Pylint
   - Ruff
   - Mypy (it seems Matan Gover's extension works better than Microsoft's)
+  - autoDocstring
 - Open the project folder (directory).
+- (Optional) Save as a workspace (if you'll be working on multiple projects with different setup requirements) in the project folder.
 - Select the `Python 3.x.x ('venv': venv)` interpreter:
   - Command Palette: `python interpreter`
 - Enable linters:
@@ -76,6 +78,9 @@
 - Enable all rules for Ruff:
   - Settings: `ruff select`
     - 'Ruff > Lint: Select': ALL
+- Note: If you have legitimate reasons to need to use `print` statements:
+  - Settings: `ruff lint ignore`
+    - 'Ruff > Lint: Ignore': T201
 - Enable type checking:
   - Settings: `mypy`
     - 'Mypy: Enabled': check
